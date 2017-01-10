@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded());
 app.set('view engine', 'hbs');
 
-server.listen(3000, function(){
+server.listen(port, function(){
 	console.log('listening on *:3000');
 });
 
