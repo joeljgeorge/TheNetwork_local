@@ -1,0 +1,137 @@
+body{
+	height: 100%;
+	width: 100%;
+	margin: 0%;
+	padding: 0%;
+	overflow: hidden;
+}
+#left_column{
+	position: absolute;
+	height: 100%;
+	width: 25%;
+	margin: 0px;
+	top: 0%;
+	left: 0%;
+	border-right: 3px solid;
+	background-color: #cce6ff;
+	font-family: "Century Gothic";
+}
+
+#list_text{
+	position: absolute;
+	top: 10%;
+	margin-left: 5%;
+}
+#group_list{
+	font-size: 25px;
+}
+#individual_list{
+	font-size: 25px;
+}
+#right_column{
+	position: absolute;
+	height: 100%;
+	width: 74.9%;
+	right: 0%;
+	font-family: "Century Gothic";
+	background-color: #ffe6e6;
+}
+#search_text{
+	position: absolute;
+	margin: 1%;
+}
+input[name=searchBar]{
+	position: absolute;
+	top: 5%;
+	width: 60%;
+	margin-left: 15%;
+}
+#search_results{
+	position: absolute;
+	margin-top: 10%;
+	width: 100%;
+	height: 90%;
+}
+#search_tabs{
+	position: relative;
+	top: 0%;
+}
+ul.tab{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+ul.tab li{
+	float: left;
+	background-color: #ccc;
+	border: 1px solid #ccc;
+	width: 20%;
+	text-align: center;
+
+}
+ul.tab li a{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+ul.tab li a:hover{ 
+	background-color: #ddd;
+}
+ul.tab li a:focus, .active{
+	background-color: #f1f1f1;
+}
+#hits{
+	height: 85%;
+	width: 100%;
+	 overflow: auto;
+}
+.tabcontent {
+    display: none;
+    padding: 6px 6px;
+    border: 1px solid #ccc;
+    background-color:#f1f1f1;
+}
+.search_list{
+	list-style-type: none;
+}
+#search_item_ppl{
+	background-color: #f1f1f1;
+	box-shadow: 0 0px 5px #888888;
+	margin: 2%;
+	padding: 1%;
+	height: auto;
+	width: 90%;
+}
+#profile-picture{
+	float: left;
+	height: 100px;
+	width: 100px;
+}
+.search_content{
+	position: relative;
+	left: 2%;
+	word-wrap: break-word;
+	width: 90%;
+}
+
+.expand_button{
+	float: right;
+	height: 50px;
+	width: 50px;
+}
+input[name=contact_button]{
+	float: right;
+	height: 50px;
+	width: auto;
+}
+.expandable_content{
+	display: none;
+}
+

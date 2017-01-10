@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TXExpress: Homepage</title>
+		<link rel="stylesheet" type="text/css" href="home_page.css" />
+	</head>
+	<body>
+		<div id = "left_column">
+			<div id = "content">
+				<form name = "search" method = "POST" action = "/search">
+					<input type = "text" name = "searchBar" placeholder = "Search"/>
+				</form>
+				<div id = "list_text">
+					<h1>Groups</h1>
+					<ul class = 'list' id = 'group_list'>
+						{{#each group_items}}
+							<li class = 'group_item'>
+							{{this}}
+							</li>
+						{{/each }}
+					</ul>
+					<h1>Individuals</h1>
+					<ul class = 'list' id = 'individual_list'>
+						{{#each individual_items}}
+							<li class = 'individual_item'>
+							{{this}}
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id = "right_column">
+			<div id = "welcome_text"><h1>Welcome, <span id = "name">{{name}}</span>!</h1></div>
+				<div id = "messageView">
+					<ul id = "user_message" style="list-style-type:none"> 
+							<!-- {{#each message}}
+								<div id = "messageBubble">
+									<li id = "message_text">
+									<p>{{name}}, {{timestamp}}</p>
+									<div id = "message_content"><p>{{value}}</p></div>
+									</li>
+								</div>
+							{{/each}} -->
+					</ul> <!--TODO: dynamically update view-->
+					<div id="chat-end"></div>
+				</div>
+		<!-- 	<form id = "message" name = "message" method = "POST" action = "/message"> -->
+			<form id = "messageField" action = "">
+				<input type = "text" id = "messageBox" name = "messageBox" placeholder = "Type message here" autofocus/>
+			</form>
+		</div>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+		<script type="text/javascript">
+
+		  var userName = document.getElementById("name").innerHTML; 
+		  var msgId = 0;
+
+		  var socket = io();
+		  $('#messageField').submit(function(){
+		  	let d = new Date();
+			let current_hour = d.getHours();
+			let current_minute = d.getMinutes();
+				if(current_minute<10)
+					current_minute = '0'+current_minute;
+				if(current_hour<10)
+					current_hour = '0'+current_hour;
+			let time = current_hour+':'+current_minute;
+		    socket.emit('chat message', time, userName, $('#messageBox').val());
+		    $('#messageBox').val("");
+		    return false;
+		  });
+
+		  socket.on('chat message', function(msg){
+		    $('#user_message').append($('<li class = "msg">').text(msg));
+		    let ul = document.getElementById("user_message");
+		    let list_items = ul.getElementsByTagName("li");
+		    for(var i = 0; i<list_items.length; i++){
+		    	if(list_items[i].innerHTML.indexOf(userName)==0){
+		    		list_items[i].style.position = "relative";
+		    		list_items[i].style.left = "55%";
+		    		list_items[i].style.backgroundColor = "skyblue";
+		    	};
+		    }
+		    	var message = list_items[msgId].innerHTML;
+		    	var indexOfColon = message.indexOf(':', message.indexOf(':')+1);
+		    	var header = message.slice(0, indexOfColon+1);
+		    	var msg_content = message.slice(indexOfColon+1, list_items[msgId].innerHTML.length)
+		    	list_items[msgId].innerHTML = header + "<br />" + "<div id = 'message_content'>" + msg_content + "</div>" ;
+		    	let $display = $('#messageView');
+    		    $display.animate({ scrollTop: $display[0].scrollHeight }, 'fast');
+				msgId++;
+
+		  });
+
+
+		</script>
+	</body>
+</html>
