@@ -18,7 +18,7 @@ server.listen(3000, function(){
 
 
 app.get('/', (req, res, next) => {
-	res.redirect('/login.html');//redirecting from localhost:3000 to login page
+	res.sendFile(__dirname + '/public/login.html');//redirecting from localhost:3000 to login page
 })
 
 app.post('/login', (req, res, next) => {
